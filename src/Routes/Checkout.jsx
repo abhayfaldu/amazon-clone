@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from '../components/Checkout.module.css'
+import CheckoutProduct from '../components/CheckoutProduct';
 import Subtotal from '../components/Subtotal'
 import { useStateValue } from '../Context/StateProvider';
 const ad_image_url = {
@@ -7,7 +8,7 @@ const ad_image_url = {
 };
 
 const Checkout = () => {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket }] = useStateValue();
   return (
     <div className={styles.checkout}>
       <div className={styles.checkout__left}>
@@ -18,6 +19,15 @@ const Checkout = () => {
         />
         <div>
           <h2 className={styles.checkout__title}>Your shopping basket</h2>
+          {basket.map(item => (
+            <CheckoutProduct
+              id={item.id}
+              title={item.title}
+              image={item.image}
+              price={item.price}
+              rating={item.rating}
+            />
+          ))}
         </div>
       </div>
       <div className={styles.checkout__right}>

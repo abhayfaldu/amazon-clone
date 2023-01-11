@@ -1,6 +1,6 @@
 :root {
   --amazon-black: #131921;
-  --amazon-orange: #cd9042;
+  --amazon-orange: #f0c14b;
 }
 
 .header {
@@ -36,7 +36,7 @@
 .header__searchIcon {
   padding: 5px;
   height: 22px !important;
-  background-color: var(--amazon-orange);
+  background-color: #cd9042;
 }
 
 .header__nav {
