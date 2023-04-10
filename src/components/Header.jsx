@@ -8,7 +8,6 @@ import { auth } from "../firebase";
 
 const Header = () => {
   const [{ basket, user }] = useStateValue();
-  console.log("user", user);
 
   const handerAuthentication = () => {
     if (user) {
@@ -17,7 +16,7 @@ const Header = () => {
   };
 
   return (
-    <di className={styles.header}>
+    <div className={styles.header}>
       <Link to="/">
         <img
           className={styles.header__logo}
@@ -64,7 +63,7 @@ const Header = () => {
           </div>
         </Link>
       </div>
-    </di>
+    </div>
   );
 };
 

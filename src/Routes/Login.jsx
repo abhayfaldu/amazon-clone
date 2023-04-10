@@ -25,7 +25,6 @@ const Login = () => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
-        console.log(auth);
         navigate("/", { replace: true });
       })
       .catch((error) => {
