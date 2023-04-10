@@ -1,35 +1,48 @@
-import React from 'react';
-import styles from './Header.module.css';
-import SearchIcon from '@mui/icons-material/Search';
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import { Link } from 'react-router-dom';
-import { useStateValue } from '../Context/StateProvider';
+import React from "react";
+import styles from "../styles/Header.module.css";
+import SearchIcon from "@mui/icons-material/Search";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import { Link } from "react-router-dom";
+import { useStateValue } from "../Context/StateProvider";
+import { auth } from "../firebase";
 
 const Header = () => {
-  const [{basket}] = useStateValue();
+  const [{ basket, user }] = useStateValue();
+  console.log("user", user);
+
+  const handerAuthentication = () => {
+    if (user) {
+      auth.signOut();
+    }
+  };
+
   return (
-    <div className={styles.header}>
-      <Link to='/'>
+    <di className={styles.header}>
+      <Link to="/">
         <img
           className={styles.header__logo}
-          src='https://pngimg.com/uploads/amazon/amazon_PNG11.png'
-          alt='amazon-logo'
+          src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
+          alt="amazon-logo"
         />
       </Link>
       <div className={styles.header__search}>
         <input
           className={styles.header__searchInput}
-          type='text'
-          name=''
-          id=''
+          type="text"
+          name=""
+          id=""
         />
         <SearchIcon className={styles.header__searchIcon} />
       </div>
       <div className={styles.header__nav}>
-        <Link to='/login'>
-          <div className={styles.header__option}>
-            <span className={styles.header__optionLineOne}>Hello Guest</span>
-            <span className={styles.header__optionLineTwo}>Sign In</span>
+        <Link to={!user && "/login"}>
+          <div className={styles.header__option} onClick={handerAuthentication}>
+            <span className={styles.header__optionLineOne}>
+              {user ? "Hello " + user.email.split("@").at(0) : "Hello Guest"}
+            </span>
+            <span className={styles.header__optionLineTwo}>
+              {user ? "Sign out" : "Sign in"}
+            </span>
           </div>
         </Link>
         <div className={styles.header__option}>
@@ -40,7 +53,7 @@ const Header = () => {
           <span className={styles.header__optionLineOne}>Your</span>
           <span className={styles.header__optionLineTwo}>Prime</span>
         </div>
-        <Link to='/checkout'>
+        <Link to="/checkout">
           <div className={styles.header__optionBasket}>
             <ShoppingBasketIcon />
             <span
@@ -51,7 +64,7 @@ const Header = () => {
           </div>
         </Link>
       </div>
-    </div>
+    </di>
   );
 };
 

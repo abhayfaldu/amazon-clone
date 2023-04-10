@@ -1,36 +1,38 @@
-import React from 'react';
-import styles from './Subtotal.module.css'
-import CurrencyFormat from 'react-currency-format';
-import { useStateValue } from '../Context/StateProvider';
-import { getBasketTotal } from '../Reducer/Reducer';
+import React from "react";
+import styles from "../styles/Subtotal.module.css";
+import { useStateValue } from "../Context/StateProvider";
+import { getBasketTotal } from "../Reducer/Reducer";
+import { NumericFormat } from "react-number-format";
 
 const Subtotal = () => {
   const [{ basket }] = useStateValue();
-  
-  console.log(typeof totalPrice )
+
   return (
     <div className={styles.subtotal}>
-      <CurrencyFormat
-        renderText={value => (
-          <>
-            <p>
-              Subtotal ({basket.length} items): <strong>{value}</strong>
-            </p>
-            <small className={styles.subtotal__gift}>
-              <input type="checkbox" name="" id="" />
-              This order contains a gift
-            </small>
-          </>
-        )}
-        decimalScale={2}
-        value={getBasketTotal(basket)}
-        displayType={'text'}
-        thousandSeparator={true}
-        prefix={"₹"}
-      />
+      <>
+        <p>
+          {/* Part of the homework */}
+          Subtotal ({basket.length} items):{" "}
+          <strong>
+            {
+              <NumericFormat
+                value={getBasketTotal(basket)}
+                decimalScale={2}
+                prefix="₹"
+                displayType="text"
+                thousandsGroupStyle="lakh"
+                thousandSeparator=","
+              />
+            }
+          </strong>
+        </p>
+        <small className="subtotal__gift">
+          <input type="checkbox" /> This order contains a gift
+        </small>
+      </>
       <button>Proceed to Checkout</button>
     </div>
-  )
-}
+  );
+};
 
-export default Subtotal
+export default Subtotal;

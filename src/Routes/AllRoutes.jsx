@@ -1,17 +1,34 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import Header from '../components/Header'
-import Checkout from './Checkout'
-import Home from './Home'
-import Login from './Login'
-
+import React from "react";
+import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import Header from "../components/Header";
+import { useStateValue } from "../Context/StateProvider";
+import { auth } from "../firebase";
+import Checkout from "./Checkout";
+import Home from "./Home";
+import Login from "./Login";
 
 const AllRoutes = () => {
+  const [{}, dispatch] = useStateValue();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      console.log("the user is >>> ", authUser);
+      if (authUser) {
+        // the user just logged in / the user was logged in
+        dispatch({ type: "SET_USER", user: authUser });
+      } else {
+        // the user is logged out
+        dispatch({ type: "SET_USER", user: null });
+      }
+    });
+  }, []);
+
   return (
     <>
       <Routes>
         <Route
-          path='/checkout'
+          path="/checkout"
           element={
             <>
               <Header />
@@ -19,9 +36,9 @@ const AllRoutes = () => {
             </>
           }
         />
-        <Route path='/login' element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route
-          path='/'
+          path="/"
           element={
             <>
               <Header />
@@ -32,6 +49,6 @@ const AllRoutes = () => {
       </Routes>
     </>
   );
-}
+};
 
-export default AllRoutes
+export default AllRoutes;
