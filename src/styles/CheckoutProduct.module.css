@@ -8,12 +8,13 @@
 }
 
 .checkoutProduct__info > button {
+  cursor: pointer;
   background-color: var(--amazon-orange);
   border: 1px solid;
   border-color: #a88734 #9c7e31 #846a29;
   margin-right: 10px;
   color: #111;
-} 
+}
 
 .checkoutProduct__image {
   object-fit: contain;

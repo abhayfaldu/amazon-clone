@@ -30,6 +30,7 @@
 }
 
 .product > button {
+  cursor: pointer;
   background: var(--amazon-orange);
   border: 1px solid;
   margin-top: 10px;
