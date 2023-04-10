@@ -7,6 +7,7 @@ import { auth } from "../firebase";
 import Checkout from "./Checkout";
 import Home from "./Home";
 import Login from "./Login";
+import Payment from "./Payment";
 
 const AllRoutes = () => {
   const [{}, dispatch] = useStateValue();
@@ -42,6 +43,15 @@ const AllRoutes = () => {
             <>
               <Header />
               <Home />
+            </>
+          }
+        />
+        <Route
+          path="/payment"
+          element={
+            <>
+              <Header />
+              <Payment />
             </>
           }
         />
