@@ -26,6 +26,11 @@
 }
 
 .payment__address,
+.payment__details,
 .payment__items {
   flex: 0.8;
+}
+
+.payment__orderTotalText {
+  font-weight: bold;
 }

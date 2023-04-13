@@ -54,7 +54,7 @@ const Home = () => {
           <Product
             id={1239}
             title='Samsung 123.9cm (49") Gaming Monitor with 32:9 Aspect Ratio Display and 240Hz Refresh Rate - LC49G95TSSWXXL'
-            price={1440450}
+            price={140450}
             image="https://m.media-amazon.com/images/I/51+iB9+5HKL._AC_UY436_FMwebp_QL65_.jpg"
             rating={2}
           />
